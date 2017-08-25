@@ -1,0 +1,49 @@
+﻿@using TestBlog.Models
+
+@model List<t_category>
+@{
+    ViewBag.Title = "Category";
+}
+
+<h2>Category</h2>
+
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-xs-6 col-md-2">
+                <b>
+                    S.No.
+                </b>
+    </div>
+            <div class="col-xs-6 col-md-2">
+                <b>
+                    Category
+                </b>
+    </div>
+            <div class="col-xs-6 col-md-2">
+                <b>
+                    Description
+                </b>
+        </div>
+    </div>
+@foreach (var categories in Model)
+{
+    <div class="row">
+        <div class="col-xs-6 col-md-2">
+            @categories.id
+        </div>
+        <div class="col-xs-6 col-md-2">
+            @categories.category
+        </div>
+        <div class="col-xs-6 col-md-2">
+            @if (@categories.description == null)
+            {
+                <p>--</p>
+            }
+            else
+            {
+                @categories.description
+            }
+        </div>
+    </div>
+}
+</div>

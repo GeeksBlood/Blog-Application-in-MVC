@@ -1,0 +1,26 @@
+﻿@using TestBlog.Models
+@model IEnumerable<Posts>
+   <h2>Home</h2>
+
+
+<table border="2" style="width:100%" >
+    @foreach (var x in Model)
+    {
+    <tr style="border-bottom:solid 2px #808080 ">
+        <td>
+            <b>
+                <ul>
+                    @Html.ActionLink(x.Title, "PostDetails", "Home", new { id = x.Url }, null)
+                 </ul>
+            </b>
+        <br />
+        <p>
+            @Html.Raw(x.PostContent)
+        </p>
+        <br />
+    </td>
+    </tr>
+    }
+</table>
+
+

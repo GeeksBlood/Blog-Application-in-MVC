@@ -1,0 +1,69 @@
+﻿@model TestBlog.Models.Users
+@{
+    ViewBag.Title = "UserDetails";
+}
+
+<h2>UserDetails</h2>
+
+
+<div class="container">
+    @using (Html.BeginForm("UserDetails", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h2>Edit Posts</h2>
+        @Html.HiddenFor(x => x.id)
+        <div style="color:red;">
+            <p>@Html.ValidationSummary()</p>
+        </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="UserName">UserName:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">Email:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", @readonly = "true" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="MobileNo">Mobile No.:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.mobile_no, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="City">City:</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.city, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="UserType">User Type:</label>
+                <div class="col-sm-10">
+                    @Html.DropDownList("UserType", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="Active">Active/Inactive:</label>
+                <div class="col-sm-10">
+                    @Html.RadioButtonFor(x => x.is_active, true)  <label>Active</label>
+                    @Html.RadioButtonFor(x => x.is_active, false)    <label>Inactive</label>
+                </div>
+            </div>
+            if (ViewBag.Edit == "Edit")
+            {
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+            }
+
+            }
+        </div>

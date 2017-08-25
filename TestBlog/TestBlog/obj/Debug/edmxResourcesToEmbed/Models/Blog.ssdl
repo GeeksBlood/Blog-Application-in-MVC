@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCBlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="t_category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="t_comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="postid" Type="int" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date_time" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_posts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="tags" Type="nvarchar" MaxLength="200" />
+    <Property Name="categoryId" Type="int" Nullable="false" />
+    <Property Name="postContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+    <Property Name="date_time" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="mobile_no" Type="nvarchar" MaxLength="10" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="last_login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_type" Type="int" Nullable="false" />
+    <Property Name="is_active" Type="bit" Nullable="false" />
+    <Property Name="reg_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_userType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_t_comment_t_posts">
+    <End Role="t_posts" Type="Self.t_posts" Multiplicity="1" />
+    <End Role="t_comment" Type="Self.t_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_posts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_comment">
+        <PropertyRef Name="postid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_posts_t_category">
+    <End Role="t_category" Type="Self.t_category" Multiplicity="1" />
+    <End Role="t_posts" Type="Self.t_posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_posts">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_posts_t_user">
+    <End Role="t_user" Type="Self.t_user" Multiplicity="1" />
+    <End Role="t_posts" Type="Self.t_posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_posts">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_user_t_userType">
+    <End Role="t_userType" Type="Self.t_userType" Multiplicity="1" />
+    <End Role="t_user" Type="Self.t_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_userType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="t_user">
+        <PropertyRef Name="is_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCBlogModelStoreContainer">
+    <EntitySet Name="t_category" EntityType="Self.t_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_comment" EntityType="Self.t_comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_posts" EntityType="Self.t_posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_user" EntityType="Self.t_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_userType" EntityType="Self.t_userType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_t_comment_t_posts" Association="Self.FK_t_comment_t_posts">
+      <End Role="t_posts" EntitySet="t_posts" />
+      <End Role="t_comment" EntitySet="t_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_posts_t_category" Association="Self.FK_t_posts_t_category">
+      <End Role="t_category" EntitySet="t_category" />
+      <End Role="t_posts" EntitySet="t_posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_posts_t_user" Association="Self.FK_t_posts_t_user">
+      <End Role="t_user" EntitySet="t_user" />
+      <End Role="t_posts" EntitySet="t_posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_user_t_userType" Association="Self.FK_t_user_t_userType">
+      <End Role="t_userType" EntitySet="t_userType" />
+      <End Role="t_user" EntitySet="t_user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

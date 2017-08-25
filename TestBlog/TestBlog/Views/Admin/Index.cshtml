@@ -1,0 +1,32 @@
+﻿@using TestBlog.Models
+
+@model IEnumerable<Posts>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Posts</h2>
+<table style="width:100%">
+    <tr>
+        <td>Title </td>
+        <td>URL</td>
+        <td>Username</td>
+        <td>Category</td>
+        <td>Active/Inactive</td>
+        <td>Date Time</td>
+    </tr>
+    @foreach (var posts in Model)
+    {
+    <tr>
+        <td>@Html.ActionLink(@posts.Title, "Posts", "Admin", new { id = posts.id, operation="Detail" }, null)</td>
+        <td>@posts.Url</td>
+        <td>@posts.User</td>
+        <td>@posts.Category</td>
+        <td>@posts.Is_active</td>
+        <td>@posts.Date</td>
+        <td>@Html.ActionLink("Edit", "Posts", "Admin", new { id= posts.id, operation = "Edit" },null)</td>
+        <td>@Html.ActionLink("Delete", "DeletePosts", "Admin", new { id = posts.id }, null)</td>
+    </tr>
+    }
+</table>

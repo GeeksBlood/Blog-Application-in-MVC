@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCBlogModelStoreContainer" CdmEntityContainer="BlogEntities">
+    <EntitySetMapping Name="t_category">
+      <EntityTypeMapping TypeName="MVCBlogModel.t_category">
+        <MappingFragment StoreEntitySet="t_category">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_comment">
+      <EntityTypeMapping TypeName="MVCBlogModel.t_comment">
+        <MappingFragment StoreEntitySet="t_comment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="postid" ColumnName="postid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="date_time" ColumnName="date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_posts">
+      <EntityTypeMapping TypeName="MVCBlogModel.t_posts">
+        <MappingFragment StoreEntitySet="t_posts">
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="tags" ColumnName="tags" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="postContent" ColumnName="postContent" />
+          <ScalarProperty Name="date_time" ColumnName="date_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_user">
+      <EntityTypeMapping TypeName="MVCBlogModel.t_user">
+        <MappingFragment StoreEntitySet="t_user">
+          <ScalarProperty Name="reg_date" ColumnName="reg_date" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="is_type" ColumnName="is_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_userType">
+      <EntityTypeMapping TypeName="MVCBlogModel.t_userType">
+        <MappingFragment StoreEntitySet="t_userType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="is_type" ColumnName="is_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

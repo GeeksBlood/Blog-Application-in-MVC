@@ -1,0 +1,29 @@
+﻿@using TestBlog.Models
+@model IEnumerable<Users>
+@{
+    ViewBag.Title = "UserDetails";
+}
+
+<h2>User Details</h2>
+
+<table style="width:100%">
+    <tr>
+        <td>Name </td>
+        <td>Email</td>
+        <td>Mobile No.</td>
+        <td>City</td>
+        <td>User Type</td>
+    </tr>
+    @foreach (var users in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@users.username, "UserDetails", "Admin", new { id = users.id, operation = "Detail" }, null)</td>
+            <td>@users.email</td>
+            <td>@users.mobile_no</td>
+            <td>@users.city</td>
+            <td>@users.usertype</td>
+            <td>@Html.ActionLink("Edit", "UserDetails", "Admin", new { id = users.id, operation = "Edit" }, null)</td>
+            <td>@Html.ActionLink("Delete", "UserDetails", "Admin", new { id = users.id }, null)</td>
+        </tr>
+    }
+</table>
